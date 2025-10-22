@@ -1,39 +1,42 @@
 {
 	"schemaVersion": 1,
-	"id": "primitive",
+	"id": "life_crystals",
 	"version": "${version}",
-	"name": "Primitive Progression",
-	"description": "Revamping Early-Game Progression",
-	"authors": [
-		"q4niel"
-	],
-	"contributors": [
-		"Max Westerlund - Art Assets"
-	],
+	"name": "Life Crystals",
+	"description": "Player health progression",
+	"authors": ["q4niel"],
+    "contributors": ["MaxWesterlund (Art Assets)"],
 	"contact": {
-		"homepage": "https://modrinth.com/mod/primitive-progression",
-		"issues": "https://github.com/q4niel/Primitive-Progression/issues",
-		"sources": "https://github.com/q4niel/Primitive-Progression"
+		"homepage": "https://modrinth.com/mod/life_crystals",
+		"sources": "https://github.com/q4niel/Life-Crystals",
+        "issues": "https://github.com/q4niel/Life-Crystals/issues"
 	},
-	"license": "The Insight License II",
-	"icon": "assets/primitive/icon.png",
+	"license": "Life Crystals License",
+	"icon": "assets/life_crystals/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"q4niel.primitive.PrimitiveProgression"
+			{
+				"value": "dev.q4niel.LifeCrystals",
+				"adapter": "kotlin"
+			}
 		],
 		"fabric-datagen": [
-			"q4niel.primitive.PrimitiveProgressionDataGenerator"
+			{
+				"value": "dev.q4niel.LifeCrystalsDataGenerator",
+				"adapter": "kotlin"
+			}
 		]
 	},
 	"mixins": [
-		"primitive.mixins.json"
+		"life_crystals.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.21",
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.10",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
 	},
 	"suggests": {
 		"another-mod": "*"

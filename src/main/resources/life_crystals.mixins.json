@@ -1,12 +1,12 @@
 {
 	"required": true,
-	"package": "q4niel.primitive.mixin",
+	"package": "dev.q4niel.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ItemsMixin",
-		"EntityMixin"
-	],
+	"mixins": [],
 	"injectors": {
 		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
 	}
 }
