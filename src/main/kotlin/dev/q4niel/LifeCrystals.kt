@@ -1,5 +1,6 @@
 package dev.q4niel
 
+import dev.q4niel.item.ModItems
 import net.fabricmc.api.ModInitializer
 import org.slf4j.LoggerFactory
 
@@ -9,5 +10,7 @@ object LifeCrystals : ModInitializer {
     private val _logger_ = LoggerFactory.getLogger(modID_);
     fun print(string: String): Unit = _logger_.info(string);
 
-	override fun onInitialize() {}
+	override fun onInitialize() {
+        ModItems.init();
+    }
 }
