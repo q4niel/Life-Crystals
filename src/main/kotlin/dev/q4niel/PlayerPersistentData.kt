@@ -22,14 +22,14 @@ object PlayerPersistentData {
     private val _maxHealthAttachment_: AttachmentType<Int> = AttachmentRegistry.create (
         Identifier.of(modID_, "player_max_health"),
         { builder -> builder
-            .initializer{6}
+            .initializer{ModConfig.get().defaultPlayerHealth.toInt()}
             .persistent(Codec.INT)
             .syncWith(PacketCodecs.VAR_INT, AttachmentSyncPredicate.targetOnly())
         }
     );
 
     fun initPlayerData(playerID: UUID, player: ServerPlayerEntity): Unit {
-        _dataMap[playerID] = PlayerData(player, 6);
+        _dataMap[playerID] = PlayerData(player, ModConfig.get().defaultPlayerHealth.toInt());
 
         _dataMap[playerID]!!.maxHealth = _dataMap[playerID]!!.player.getAttachedOrCreate(_maxHealthAttachment_);
         setMaxHealth(playerID, _dataMap[playerID]!!.maxHealth)

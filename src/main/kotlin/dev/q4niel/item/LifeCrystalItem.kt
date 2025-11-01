@@ -1,5 +1,6 @@
 package dev.q4niel.item
 
+import dev.q4niel.ModConfig
 import dev.q4niel.PlayerPersistentData
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.Item
@@ -14,7 +15,7 @@ class LifeCrystalItem(settings: Settings) : Item(settings) {
         if (user is ServerPlayerEntity) {
             if (!user.abilities.creativeMode) {
                 stack.decrement(1);
-                PlayerPersistentData.incrementMaxHealth(user.uuid);
+                PlayerPersistentData.incrementMaxHealth(user.uuid, ModConfig.get().lifeCrystalHealth.toInt());
             }
 
             world.playSound (
