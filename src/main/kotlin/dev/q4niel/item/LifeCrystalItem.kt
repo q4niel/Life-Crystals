@@ -15,7 +15,7 @@ class LifeCrystalItem(settings: Settings) : Item(settings) {
         if (user is ServerPlayerEntity) {
             if (!user.abilities.creativeMode) {
                 stack.decrement(1);
-                PlayerPersistentData.incrementMaxHealth(user.uuid, ModConfig.get().lifeCrystalHealth.toInt());
+                PlayerPersistentData.incrementMaxHealth(user, ModConfig.get().lifeCrystalHealth.toInt());
             }
 
             world.playSound (

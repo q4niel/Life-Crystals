@@ -2,7 +2,7 @@
 	"required": true,
 	"package": "dev.q4niel.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [],
+	"mixins": ["EntityMixin"],
 	"injectors": {
 		"defaultRequire": 1
 	},

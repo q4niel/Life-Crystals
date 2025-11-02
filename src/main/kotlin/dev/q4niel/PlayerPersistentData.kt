@@ -1,59 +1,35 @@
 package dev.q4niel
 
-import com.mojang.serialization.Codec
-import dev.q4niel.LifeCrystals.modID_
-import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry
-import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate
-import net.fabricmc.fabric.api.attachment.v1.AttachmentType
+import dev.q4niel.mixin_interfaces.IEntityMixin
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.network.codec.PacketCodecs
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 import java.util.UUID
 
 object PlayerPersistentData {
-    data class PlayerData (
-        var player: ServerPlayerEntity,
-        var maxHealth: Int
-    );
+    private var _data: MutableMap<UUID, Int> = mutableMapOf();
 
-    private var _dataMap: MutableMap<UUID, PlayerData> = mutableMapOf();
-
-    private val _maxHealthAttachment_: AttachmentType<Int> = AttachmentRegistry.create (
-        Identifier.of(modID_, "player_max_health"),
-        { builder -> builder
-            .initializer{ModConfig.get().defaultPlayerHealth.toInt()}
-            .persistent(Codec.INT)
-            .syncWith(PacketCodecs.VAR_INT, AttachmentSyncPredicate.targetOnly())
-        }
-    );
-
-    fun initPlayerData(playerID: UUID, player: ServerPlayerEntity): Unit {
-        _dataMap[playerID] = PlayerData(player, ModConfig.get().defaultPlayerHealth.toInt());
-
-        _dataMap[playerID]!!.maxHealth = _dataMap[playerID]!!.player.getAttachedOrCreate(_maxHealthAttachment_);
-        setMaxHealth(playerID, _dataMap[playerID]!!.maxHealth)
+    fun initPlayerData(player: ServerPlayerEntity): Unit? = LifeCrystals.serverExec {
+        _data[player.uuid] = (player as IEntityMixin).playerMaxHealth;
+        setMaxHealth(player, _data[player.uuid]!!);
     }
 
-    fun setMaxHealth(playerID: UUID, value: Int): Unit {
-        _dataMap[playerID]!!.maxHealth = value;
+    fun setMaxHealth(player: ServerPlayerEntity, value: Int): Unit? = LifeCrystals.serverExec {
+        _data[player.uuid] = value;
+        (player as IEntityMixin).playerMaxHealth = value;
+        player.getAttributeInstance(EntityAttributes.MAX_HEALTH)?.baseValue = value.toDouble();
+    }
 
-        _dataMap[playerID]!!.player.setAttached (
-            _maxHealthAttachment_,
-            _dataMap[playerID]!!.maxHealth
+    fun incrementMaxHealth(player: ServerPlayerEntity, amount: Int = 1): Unit? = LifeCrystals.serverExec {
+        setMaxHealth(
+            player,
+            _data[player.uuid]!! + amount
         );
-
-        _dataMap[playerID]!!.player.getAttributeInstance(EntityAttributes.MAX_HEALTH)?.baseValue =
-            _dataMap[playerID]!!.player.getAttached(_maxHealthAttachment_)!!.toDouble();
     }
 
-    fun incrementMaxHealth(playerID: UUID, amount: Int = 1): Unit = setMaxHealth (
-        playerID,
-        _dataMap[playerID]!!.maxHealth + amount
-    );
-
-    fun decrementMaxHealth(playerID: UUID, amount: Int = 1): Unit = setMaxHealth (
-        playerID,
-        _dataMap[playerID]!!.maxHealth - amount
-    );
+    fun decrementMaxHealth(player: ServerPlayerEntity, amount: Int = 1): Unit? = LifeCrystals.serverExec {
+        setMaxHealth (
+            player,
+            _data[player.uuid]!! - amount
+        );
+    }
 }
