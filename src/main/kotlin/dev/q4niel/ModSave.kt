@@ -24,7 +24,7 @@ object ModSave {
                 return line.toString().substringAfter("=").toInt();
             }
         }
-        return ModConfig.get().defaultPlayerHealth.toInt();
+        return ModConfig.get().defaultPlayerHealth;
     }
 
     fun savePlayerMaxHealth(playerID: UUID, value: Int): Unit {

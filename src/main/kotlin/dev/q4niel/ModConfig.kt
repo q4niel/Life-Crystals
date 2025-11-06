@@ -4,11 +4,11 @@ import com.moandjiezana.toml.Toml
 import java.io.File
 
 data class ModConfigFile (
-    val defaultPlayerHealth: Long = 6,
-    val lifeCrystalHealth: Long = 2,
-    val deathHealthPenalty: Long = 2,
-    val maxPlayerHealth: Long = 20,
-    val minPlayerHealth: Long = 6
+    val defaultPlayerHealth: Int = 6,
+    val lifeCrystalHealth: Int = 2,
+    val deathHealthPenalty: Int = 2,
+    val maxPlayerHealth: Int = 20,
+    val minPlayerHealth: Int = 6
 )
 
 object ModConfig {
@@ -22,11 +22,11 @@ object ModConfig {
 
         val toml = Toml().read(_cfgFile);
         _config = ModConfigFile (
-            toml.getLong("default_player_health", _config.defaultPlayerHealth),
-            toml.getLong("life_crystal_health", _config.lifeCrystalHealth),
-            toml.getLong("death_health_penalty", _config.deathHealthPenalty),
-            toml.getLong("max_player_health", _config.maxPlayerHealth),
-            toml.getLong("min_player_health", _config.minPlayerHealth)
+            toml.getLong("default_player_health", _config.defaultPlayerHealth.toLong()).toInt(),
+            toml.getLong("life_crystal_health", _config.lifeCrystalHealth.toLong()).toInt(),
+            toml.getLong("death_health_penalty", _config.deathHealthPenalty.toLong()).toInt(),
+            toml.getLong("max_player_health", _config.maxPlayerHealth.toLong()).toInt(),
+            toml.getLong("min_player_health", _config.minPlayerHealth.toLong()).toInt()
         )
     }
 }

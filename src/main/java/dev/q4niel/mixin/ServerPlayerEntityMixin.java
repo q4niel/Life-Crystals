@@ -30,14 +30,14 @@ public class ServerPlayerEntityMixin implements IServerPlayerEntityMixin {
     public void onDeath(DamageSource damageSource, CallbackInfo ci) {
         setMaxHealth (
                 ModSave.INSTANCE.getPlayerMaxHealth(self.getUuid()) -
-                (int)ModConfig.INSTANCE.get().getDeathHealthPenalty()
+                ModConfig.INSTANCE.get().getDeathHealthPenalty()
         );
     }
 
     @Override
     public void setMaxHealth(int value) {
-        int min = (int)ModConfig.INSTANCE.get().getMinPlayerHealth();
-        int max = (int)ModConfig.INSTANCE.get().getMaxPlayerHealth();
+        int min = ModConfig.INSTANCE.get().getMinPlayerHealth();
+        int max = ModConfig.INSTANCE.get().getMaxPlayerHealth();
 
         if (value <= min) value = min;
         else if (value >= max) value = max;

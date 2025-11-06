@@ -18,7 +18,7 @@ class LifeCrystalItem(settings: Settings) : Item(settings) {
                 stack.decrement(1);
                 (user as IServerPlayerEntityMixin).setMaxHealth (
                     ModSave.getPlayerMaxHealth(user.uuid) +
-                            ModConfig.get().lifeCrystalHealth.toInt()
+                    ModConfig.get().lifeCrystalHealth
                 );
             }
 
