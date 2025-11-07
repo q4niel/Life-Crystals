@@ -23,9 +23,19 @@ object ModBlocks {
         Rarity.EPIC,
         ::Block,
         AbstractBlock.Settings.create()
-            .sounds(BlockSoundGroup.ANCIENT_DEBRIS)
+            .sounds(BlockSoundGroup.AMETHYST_BLOCK)
             .requiresTool()
             .strength(4.0f)
+    );
+
+    val deepslateLifeCrystalOre_: Block = _register (
+        "deepslate_life_crystal_ore",
+        Rarity.EPIC,
+        ::Block,
+        AbstractBlock.Settings.create()
+            .sounds(BlockSoundGroup.AMETHYST_CLUSTER)
+            .requiresTool()
+            .strength(8.0f)
     );
 
     fun init(): Unit {

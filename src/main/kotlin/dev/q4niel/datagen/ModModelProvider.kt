@@ -11,6 +11,7 @@ import net.minecraft.client.data.Models
 class ModModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
     override fun generateBlockStateModels(generator: BlockStateModelGenerator) {
         generator.registerSimpleCubeAll(ModBlocks.lifeCrystalOre_);
+        generator.registerSimpleCubeAll(ModBlocks.deepslateLifeCrystalOre_);
     }
 
     override fun generateItemModels(generator: ItemModelGenerator) {

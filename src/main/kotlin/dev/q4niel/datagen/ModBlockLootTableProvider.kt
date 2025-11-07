@@ -21,5 +21,13 @@ class ModBlockLootTableProvider (
                 ItemEntry.builder(ModItems.lifeCrystal_)
             )
         );
+
+        addDrop (
+            ModBlocks.deepslateLifeCrystalOre_,
+            dropsWithSilkTouch (
+                ModBlocks.deepslateLifeCrystalOre_,
+                ItemEntry.builder(ModItems.lifeCrystal_)
+            )
+        );
     }
 }

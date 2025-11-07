@@ -15,6 +15,7 @@ class ModBlockTagProvider (
     override fun configure(wrapperLookup: RegistryWrapper.WrapperLookup) {
         valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
             .add(ModBlocks.lifeCrystalOre_)
+            .add(ModBlocks.deepslateLifeCrystalOre_)
         ;
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
@@ -23,6 +24,10 @@ class ModBlockTagProvider (
 
         valueLookupBuilder(BlockTags.INCORRECT_FOR_STONE_TOOL)
             .add(ModBlocks.lifeCrystalOre_)
+        ;
+
+        valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
+            .add(ModBlocks.deepslateLifeCrystalOre_)
         ;
     }
 }

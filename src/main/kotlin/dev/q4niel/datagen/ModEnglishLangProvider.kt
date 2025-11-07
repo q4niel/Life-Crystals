@@ -20,5 +20,6 @@ class ModEnglishLangProvider (
     ) {
         builder.add("item.life_crystals.life_crystal", "Life Crystal");
         builder.add("block.life_crystals.life_crystal_ore", "Life Crystal Ore");
+        builder.add("block.life_crystals.deepslate_life_crystal_ore", "Deepslate Life Crystal Ore");
     }
 }
