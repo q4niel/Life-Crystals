@@ -2,6 +2,7 @@ package dev.q4niel
 
 import dev.q4niel.block.ModBlocks
 import dev.q4niel.item.ModItems
+import dev.q4niel.worldgen.ModWorldGeneration
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.minecraft.server.MinecraftServer
@@ -21,6 +22,7 @@ object LifeCrystals : ModInitializer {
         ModConfig.init();
         ModItems.init();
         ModBlocks.init();
+        ModWorldGeneration.generateWorldGen();
 
         ServerLifecycleEvents.SERVER_STARTED.register {
             server: MinecraftServer
