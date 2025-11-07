@@ -1,5 +1,6 @@
 package dev.q4niel
 
+import dev.q4niel.block.ModBlocks
 import dev.q4niel.item.ModItems
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
@@ -19,6 +20,7 @@ object LifeCrystals : ModInitializer {
     override fun onInitialize() {
         ModConfig.init();
         ModItems.init();
+        ModBlocks.init();
 
         ServerLifecycleEvents.SERVER_STARTED.register {
             server: MinecraftServer

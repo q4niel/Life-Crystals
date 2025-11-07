@@ -19,5 +19,6 @@ class ModEnglishLangProvider (
         builder: TranslationBuilder
     ) {
         builder.add("item.life_crystals.life_crystal", "Life Crystal");
+        builder.add("block.life_crystals.life_crystal_ore", "Life Crystal Ore");
     }
 }
