@@ -8,7 +8,28 @@
   - **Increase** your **max HP** by consuming the new **Life Crystal** item.
   - **Life Crystals** are obtainable by mining **Life Crystal Ore**.
 - **Death Penalty**:
-  - Each time a player dies, they lose **one heart (2 HP)** from their maximum health, so don't go around dying now.
+  - Each time a player dies, they lose **one heart (2 HP)** from their maximum health.
+
+## Optional TOML Customization
+### File path: config/life_crystals.toml
+```toml
+# This (#) is a comment
+
+# The max health a player starts with (6HP = 3 Hearts)
+default_player_health = 6
+
+# The increase in max health a player recieves by consuming a life crystal (2HP = 1 Hearth)
+life_crystal_health = 2
+
+# The max health loss a player recieves after death (2HP = 1 Hearth)
+death_health_penalty = 2
+
+# A players max health can never be more (20HP = 10 Hearths)
+max_player_health = 20
+
+# A players max health can never be less (6HP = 3 Hearths)
+min_player_health = 6
+```
 
 ## Download
 - [Modrinth](https://modrinth.com/mod/life_crystals/versions)
